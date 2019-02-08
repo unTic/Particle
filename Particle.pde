@@ -5,3 +5,7 @@ void setup(){
 void draw(){
   background(200);
 }
+
+class Particule{
+  
+}
