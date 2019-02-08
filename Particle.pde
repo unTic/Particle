@@ -11,17 +11,25 @@ void draw(){
   p.show();
 }
 
+/*****************************************************************
+
+*****************************************************************/
+
 class Particule{
   float x,y;
   float r;
   float vx, vy;
+  float vxMin = -2;
+  float vxMax = 2;
+  float vyMin = -2;
+  float vyMax = 2;
   
   Particule(){
      this.x = width/2;
      this.y = height/2;
-     this.r = 3;
-     this.vx = 1;
-     this.vy = 1;
+     this.r = 10;
+     this.vx = 0;
+     this.vy = 5;
   }
   
   void show(){
@@ -31,8 +39,20 @@ class Particule{
   }
   
   void move(){
+     //vertical boundary
+     if( (this.x>width)||(this.x<0) ){
+       this.randomV();
+     } // horizontal boundary
+     else if(( (this.y>height)||(this.y<0) )){ 
+       this.randomV();
+     }
      this.x += this.vx;
-     this.y += this.vy;
+     this.y -= this.vy;
+  }
+  
+  void randomV(){
+     this.vx = random(this.vxMin, this.vxMax);
+     this.vy = random(this.vyMin, this.vyMax);
   }
   
 }
