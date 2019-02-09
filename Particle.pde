@@ -12,7 +12,7 @@ void draw(){
 }
 
 /*****************************************************************
-
+*******************  -  P A R T I C U L E  -  *******************
 *****************************************************************/
 
 class Particule{
@@ -22,16 +22,14 @@ class Particule{
 
   float vxMin = 2;
   float vxMax = 4;
-  float vyMin = 2;
-  float vyMax = 4;
+  float vyMin = 1;
+  float vyMax = 5;
   
   Particule(){
      this.x = width/2;
      this.y = height/2;
      this.r = 10;
-     this.vx = 5;
-     this.vy = 2;
-     
+     this.randomV();
   }
   
   void show(){
@@ -41,7 +39,13 @@ class Particule{
   }
   
   void move(){
-     if(this.x>width){
+     this.bouncing();
+     this.x += this.vx;
+     this.y -= this.vy;
+  }
+  
+  void bouncing(){
+    if(this.x>width){
        float a = random(0,1);
        this.vx = map(a,0,1,-this.vxMin, -this.vxMax);
      } else if(this.x<0){
@@ -49,19 +53,17 @@ class Particule{
        this.vx = map(a,0,1,this.vxMin, this.vxMax);
      } else if (this.y>height){
        float a = random(0,1);
-       this.vy = map(a,0,1,-this.vyMin,-this.vyMax);
+       this.vy = map(a,0,1,this.vyMin,this.vyMax);
      } else if(this.y<0){
        float a = random(0,1);
-       this.vy = map(a,0,1,this.vyMin, this.vyMax);
+       this.vy = map(a,0,1,-this.vyMin, -this.vyMax);
      }
-     
-     this.x += this.vx;
-     this.y += this.vy;
   }
   
   void randomV(){
-     this.vx = random(0, this.vxMax);
-     this.vy = random(0, this.vyMax);
+     float a = random(0,1);
+     this.vx = map(a,0,1,this.vxMin, this.vxMax);
+     this.vy = map(a,0,1,this.vyMin, this.vyMax);
   }
   
 }
