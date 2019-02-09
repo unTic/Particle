@@ -30,7 +30,7 @@ class Particule{
      this.y = height/2;
      this.r = 10;
      this.vx = 5;
-     this.vy = 0;
+     this.vy = 2;
      
   }
   
@@ -42,13 +42,17 @@ class Particule{
   
   void move(){
      if(this.x>width){
-       this.vx = random(this.vxMin, this.vxMax);
+       float a = random(0,1);
+       this.vx = map(a,0,1,-this.vxMin, -this.vxMax);
      } else if(this.x<0){
-       this.vx = random(this.vxMin, this.vxMax);
+       float a = random(0,1);
+       this.vx = map(a,0,1,this.vxMin, this.vxMax);
      } else if (this.y>height){
-       this.vy = random(-this.vyMin, -this.vyMax);
+       float a = random(0,1);
+       this.vy = map(a,0,1,-this.vyMin,-this.vyMax);
      } else if(this.y<0){
-       this.vy = random(-this.vyMin, -this.vyMax);
+       float a = random(0,1);
+       this.vy = map(a,0,1,this.vyMin, this.vyMax);
      }
      
      this.x += this.vx;
