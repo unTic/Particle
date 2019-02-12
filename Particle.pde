@@ -1,8 +1,8 @@
-int nMax = 10;
+int nMax = 6;
 Particule p[] = new Particule[nMax]; 
 
 void setup(){
-  size(500,500);
+  size(200,200);
   for(int i=0; i<p.length; i++){
     p[i] = new Particule();
   }
@@ -14,6 +14,24 @@ void draw(){
     p[i].move();
     p[i].show();
   }
+  collision();
+}
+
+void collision(){
+   for(int i=0; i<p.length; i++){
+      for(int j=0; j<p.length; j++){
+         if(i!=j){
+           float d = dist(p[i].x, p[i].y, p[j].x, p[j].y);
+           if(d<5){
+             //background(0);
+             //p[i].vx = -p[i].vx;
+             //p[i].vy = -p[i].vy;
+             p[j].vx = -p[j].vx;
+             p[j].vy = -p[j].vy;
+           }
+         }
+      }
+   }
 }
 
 /*****************************************************************
