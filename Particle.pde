@@ -26,10 +26,10 @@ class Particule{
   float vyMax = 5;
   
   Particule(){
-     this.x = width/2;
-     this.y = height/2;
+     this.randomPos();
      this.r = 10;
      this.randomV();
+     
   }
   
   void show(){
@@ -64,6 +64,11 @@ class Particule{
      float a = random(0,1);
      this.vx = map(a,0,1,this.vxMin, this.vxMax);
      this.vy = map(a,0,1,this.vyMin, this.vyMax);
+  }
+  
+  void randomPos(){
+     this.x = random(0,width);
+     this.y = random(0,height);
   }
   
 }
