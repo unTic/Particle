@@ -1,8 +1,8 @@
-int nMax = 6;
+int nMax = 50;
 Particule p[] = new Particule[nMax]; 
 
 void setup(){
-  size(200,200);
+  size(500,500);
   for(int i=0; i<p.length; i++){
     p[i] = new Particule();
   }
@@ -22,7 +22,8 @@ void collision(){
       for(int j=0; j<p.length; j++){
          if(i!=j){
            float d = dist(p[i].x, p[i].y, p[j].x, p[j].y);
-           if(d<5){
+           float r = p[i].r/2 + p[j].r/2;
+           if(d<r){
              //background(0);
              //p[i].vx = -p[i].vx;
              //p[i].vy = -p[i].vy;
