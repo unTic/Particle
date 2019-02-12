@@ -1,14 +1,19 @@
-Particule p; 
+int nMax = 10;
+Particule p[] = new Particule[nMax]; 
 
 void setup(){
   size(500,500);
-  p = new Particule();
+  for(int i=0; i<p.length; i++){
+    p[i] = new Particule();
+  }
 }
 
 void draw(){
   background(200);
-  p.move();
-  p.show();
+  for(int i=0; i<p.length; i++){
+    p[i].move();
+    p[i].show();
+  }
 }
 
 /*****************************************************************
@@ -70,5 +75,6 @@ class Particule{
      this.x = random(0,width);
      this.y = random(0,height);
   }
+  
   
 }
