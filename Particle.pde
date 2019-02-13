@@ -1,5 +1,6 @@
-int nMax = 50;
+int nMax = 100;
 Particule p[] = new Particule[nMax]; 
+int np = 0;
 
 void setup(){
   size(500,500);
@@ -14,7 +15,7 @@ void draw(){
     p[i].move();
     p[i].show();
   }
-  collision();
+  //collision();
 }
 
 void collision(){
@@ -25,14 +26,25 @@ void collision(){
            float r = p[i].r/2 + p[j].r/2;
            if(d<r){
              //background(0);
-             //p[i].vx = -p[i].vx;
-             //p[i].vy = -p[i].vy;
+             p[i].vx = -p[i].vx;
+             p[i].vy = -p[i].vy;
              p[j].vx = -p[j].vx;
              p[j].vy = -p[j].vy;
            }
          }
       }
    }
+}
+
+void mouseDragged() {
+  if(np<nMax-1){
+    p[np].visible = true;
+    p[np].x = mouseX;
+    p[np].y = mouseY;
+    np++; 
+  } else {
+    np = 0;
+  }
 }
 
 /*****************************************************************
@@ -49,23 +61,29 @@ class Particule{
   float vyMin = 1;
   float vyMax = 5;
   
+  Boolean visible;
+  
   Particule(){
      this.randomPos();
      this.r = 10;
      this.randomV();
-     
+     this.visible = false;
   }
   
   void show(){
+    if(this.visible){
      stroke(0);
      strokeWeight(this.r);
      point(this.x, this.y); 
+    }
   }
   
   void move(){
+    if(this.visible){
      this.bouncing();
      this.x += this.vx;
      this.y -= this.vy;
+    }
   }
   
   void bouncing(){
