@@ -1,4 +1,4 @@
-int nMax = 100;
+int nMax = 1000;
 Particule p[] = new Particule[nMax]; 
 int np = 0;
 
@@ -46,6 +46,15 @@ void mouseDragged() {
     np = 0;
   }
 }
+
+void keyPressed(){
+    if (key == ' '){
+      np =0;
+      for(int i=0; i<p.length; i++){
+         p[i].visible = false; 
+      }
+    }
+  }
 
 /*****************************************************************
 *******************  -  P A R T I C U L E  -  *******************
