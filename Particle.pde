@@ -100,7 +100,7 @@ class Particule{
   
   void colorIt(){
     float d = abs(dist(width/2, height/2, this.x, this.y));
-    float r = map(d, 0, width/2, 0, 255);
+    float r = map(d, 0, width/2, 255, 0);
     float g = map(d, 0, width/2, 255, 0);
     float b = map(d, 0, width/2, 255, 0);
     c = color(r,g,b);
