@@ -3,7 +3,7 @@ Particule p[] = new Particule[nMax];
 int np = 0;
 
 void setup(){
-  size(500,500);
+  size(800,800);
   for(int i=0; i<p.length; i++){
     p[i] = new Particule();
   }
@@ -65,12 +65,14 @@ class Particule{
   float r;
   float vx, vy;
 
-  float vxMin = 2;
+  float vxMin = -4;
   float vxMax = 4;
-  float vyMin = 1;
+  float vyMin = -5;
   float vyMax = 5;
   
   Boolean visible;
+  
+  color c;
   
   Particule(){
      this.randomPos();
@@ -81,7 +83,8 @@ class Particule{
   
   void show(){
     if(this.visible){
-     stroke(0);
+     colorIt(); 
+     stroke(this.c);
      strokeWeight(this.r);
      point(this.x, this.y); 
     }
@@ -93,6 +96,14 @@ class Particule{
      this.x += this.vx;
      this.y -= this.vy;
     }
+  }
+  
+  void colorIt(){
+    float d = abs(dist(width/2, height/2, this.x, this.y));
+    float r = map(d, 0, width/2, 0, 255);
+    float g = map(d, 0, width/2, 0, 255);
+    float b = map(d, 0, width/2, 0, 255);
+    c = color(r,g,b);
   }
   
   void bouncing(){
