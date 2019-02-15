@@ -76,7 +76,7 @@ class Particule{
   
   Particule(){
      this.randomPos();
-     this.r = 10;
+     this.randomR();
      this.randomV();
      this.visible = false;
   }
@@ -101,8 +101,8 @@ class Particule{
   void colorIt(){
     float d = abs(dist(width/2, height/2, this.x, this.y));
     float r = map(d, 0, width/2, 0, 255);
-    float g = map(d, 0, width/2, 0, 255);
-    float b = map(d, 0, width/2, 0, 255);
+    float g = map(d, 0, width/2, 255, 0);
+    float b = map(d, 0, width/2, 255, 0);
     c = color(r,g,b);
   }
   
@@ -131,6 +131,10 @@ class Particule{
   void randomPos(){
      this.x = random(0,width);
      this.y = random(0,height);
+  }
+  
+  void randomR(){
+     this.r = random(1,10); 
   }
   
   
